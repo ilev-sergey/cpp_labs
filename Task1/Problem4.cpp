@@ -1,4 +1,4 @@
-#include <iostream>
+ï»¿#include <iostream>
 #include <Windows.h>
 
 using namespace std;
@@ -8,9 +8,9 @@ int main()
 	setlocale(LC_ALL, "Russian");
 
 	double x = 0.0, y = 0.0;
-	cout << "Ââåäèòå x: ";
+	cout << "Ð’Ð²ÐµÐ´Ð¸Ñ‚Ðµ x: ";
 	cin >> x;
-	cout << "Ââåäèòå y: ";
+	cout << "Ð’Ð²ÐµÐ´Ð¸Ñ‚Ðµ y: ";
 	cin >> y;
 
 	cout << x << ", " << y << endl;
