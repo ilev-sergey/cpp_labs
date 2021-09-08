@@ -7,7 +7,7 @@ int main()
 {
 	setlocale(LC_ALL, "Russian");
 
-	long long c = 29979245800;
+	const long long c = 29979245800;
 
 	int i;
 	cout << "Выберите единицы измерения:" << endl;

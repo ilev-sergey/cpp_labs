@@ -17,10 +17,10 @@ int main()
 
 	// x = a, y = b
 
-	x *= y;	   // x = ab, y = b
-	y /= x;    // x = ab, y = 1/a
-	y = 1 / y; // x = ab, y = a
-	x /= y;    // x = b,  y = a
+	x += y;	 // x = a + b, y = b
+	y -= x;  // x = a + b, y = -a
+	y = -y;  // x = a + b, y = a
+	x -= y;  // x = b,     y = a
 
 	cout << x << ", " << y;
 
