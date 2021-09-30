@@ -31,9 +31,9 @@ struct Player
 
     std::string nickname;
     CharacterClasses characterClass;
-    PlayerAttributes Attributes;  
+    PlayerAttributes Attributes;
 
-    bool operator > (const Player & player2)
+    bool operator > (const Player& player2)
     {
         if (Attributes.strength > player2.Attributes.strength)
         {
@@ -58,39 +58,24 @@ struct Player
         {
         case 'w':
             characterClass = CharacterClasses::WARRIOR;
+            Attributes.strength += 10;
+            std::cout << "Your strength increased by 10\n\n";
             break;
         case 'm':
             characterClass = CharacterClasses::MAGE;
+            Attributes.intelligence += 10;
+            std::cout << "Your intelligence increased by 10\n\n";
             break;
         case 'r':
             characterClass = CharacterClasses::ROGUE;
+            Attributes.agility += 10;
+            std::cout << "Your agility increased by 10\n\n";
             break;
         default:
             std::cout << "\nSomething went wrong. You will not have a class. =(\n";
             characterClass = CharacterClasses::DEFAULTCLASS;
         }
         std::cout << '\n';
-    }
-
-    void classAttributes()
-    {
-        switch (characterClass)
-        {
-        case CharacterClasses::WARRIOR:
-            Attributes.strength += 10;
-            std::cout << "Your strength increased by 10\n\n";
-            break;
-        case CharacterClasses::MAGE:
-            Attributes.intelligence += 10;
-            std::cout << "Your intelligence increased by 10\n\n";
-            break;
-        case CharacterClasses::ROGUE:
-            Attributes.agility += 10;
-            std::cout << "Your agility increased by 10\n\n";
-            break;
-        default:
-            break;
-        }
     }
 
     void getInformation()
@@ -129,7 +114,6 @@ int main()
     cout << "\nHey, you. You are finally awake.\n\n";
     player.chooseNickname();
     player.chooseClass();
-    player.classAttributes();
     player.getInformation();
 
     Player defaultPlayer{};
