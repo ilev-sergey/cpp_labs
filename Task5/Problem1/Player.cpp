@@ -62,7 +62,7 @@ void Player::chooseClass()
     }
 }
 
-void Player::PrintInformation() const
+void Player::printInformation() const
 {
     std::cout << "Your nickname: " << m_nickname << '\n';
 

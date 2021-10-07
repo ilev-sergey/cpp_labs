@@ -42,5 +42,5 @@ public:
 
     void chooseNickname();
     void chooseClass();
-    void PrintInformation() const;
+    void printInformation() const;
 };

@@ -9,11 +9,11 @@ int main()
     cout << "\nHey, you. You are finally awake.\n\n";
     player.chooseNickname();
     player.chooseClass();
-    player.PrintInformation();
+    player.printInformation();
     cout << "Number of players: " << Player::getNumberOfPlayers() << "\n\n";
 
     Player defaultPlayer{};
-    defaultPlayer.PrintInformation();
+    defaultPlayer.printInformation();
     cout << "Number of players: " << Player::getNumberOfPlayers() << "\n\n";
 
     if (player > defaultPlayer)
