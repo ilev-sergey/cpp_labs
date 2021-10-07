@@ -64,9 +64,9 @@ public:
     }
 };
 
-const double Energy::evToJoule{ 1.602176634e-19 };
-const double Energy::evToErg{ 1.602176634e-12 };
-const double Energy::ergToJoule{ 1e-7 };
+constexpr double Energy::evToJoule{ 1.602176634e-19 };
+constexpr double Energy::evToErg{ 1.602176634e-12 };
+constexpr double Energy::ergToJoule{ 1e-7 };
 
 int main()
 {
