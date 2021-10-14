@@ -108,7 +108,11 @@ Fraction Fraction::operator-- (int)
 
 std::ostream& operator<< (std::ostream& out, const Fraction& fraction)
 {
-    out << fraction.m_numerator << "/" << fraction.m_denominator << "\n";
+    if (fraction.m_numerator == 0)
+        out << 0;
+    else
+        out << fraction.m_numerator << "/" << fraction.m_denominator << "\n";
+
     return out;
 }
 
