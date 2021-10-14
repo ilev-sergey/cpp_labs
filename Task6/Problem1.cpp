@@ -136,7 +136,7 @@ std::ostream& operator<< (std::ostream& out, const ClassName& right)
     return out;
 }
 
-int main1()
+int main()
 {
     setlocale(LC_ALL, "Russian");
 
