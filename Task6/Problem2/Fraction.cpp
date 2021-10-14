@@ -1,62 +1,110 @@
-// #include "Fraction.h"
+#include "Fraction.h"
 
-#include <iostream>
 #include <numeric>
 
-class Fraction
+Fraction::Fraction(int numerator, int denominator) :
+    m_numerator{ numerator }, m_denominator{ denominator }
 {
-private:
-    int m_numerator;
-    int m_denominator;
-
-public:
-    Fraction(int numerator = 0, int denominator = 1) :
-        m_numerator{ numerator }, m_denominator{ denominator }
+    while (denominator == 0)
     {
-        while (denominator == 0)
-        {
-            std::cout << "Incorrect denominator entered, please try again\n";
-            std::cin >> denominator;
-        }
-        m_denominator = denominator;
+        std::cout << "Incorrect denominator entered, please try again\n";
+        std::cin >> denominator;
     }
+    m_denominator = denominator;
+}
 
-    void reduceFraction()
-    {
-        int gcd = std::gcd(m_numerator, m_denominator);
-        m_numerator /= gcd;
-        m_denominator /= gcd;
-    }
+void Fraction::reduceFraction()
+{
+    int gcd = std::gcd(m_numerator, m_denominator);
+    m_numerator /= gcd;
+    m_denominator /= gcd;
+}
 
-    double convertToDouble() { return (double)m_numerator / m_denominator; }
+double Fraction::convertToDouble() { return (double)m_numerator / m_denominator; }
 
-    void setDenominaitor(int a)
-    {
-        if (a != 0)
-            m_denominator = a;
-    }
+void Fraction::setDenominaitor(int a)
+{
+    if (a != 0)
+        m_denominator = a;
+}
 
-    void setNumerator(int a) { m_numerator = a; }
+void Fraction::setNumerator(int a) { m_numerator = a; }
 
-    int getDenominaitor() const { return m_denominator; }
+int Fraction::getDenominaitor() const { return m_denominator; }
 
-    int getNumerator() const { return m_numerator; }
+int Fraction::getNumerator() const { return m_numerator; }
 
-    friend std::ostream& operator<< (std::ostream&, const Fraction&);
-    friend std::istream& operator>> (std::istream&, Fraction&);
+void Fraction::operator+= (const Fraction& fraction)
+{
+    int lcm{ std::lcm(m_denominator, fraction.m_denominator) };
 
-    friend Fraction& operator+ (const Fraction&, const Fraction&);
-    friend Fraction& operator- (const Fraction&, const Fraction&);
-    friend Fraction& operator* (const Fraction&, const Fraction&);
-    friend Fraction& operator/ (const Fraction&, const Fraction&);
+    int k1{ lcm / fraction.m_denominator };
+    int k2{ lcm / fraction.m_denominator };
 
-    friend bool operator> (const Fraction&, const Fraction&);
-    friend bool operator< (const Fraction&, const Fraction&);
-    friend bool operator>= (const Fraction&, const Fraction&);
-    friend bool operator<= (const Fraction&, const Fraction&);
-    friend bool operator== (const Fraction&, const Fraction&);
-    friend bool operator!= (const Fraction&, const Fraction&);
-};
+    m_numerator = k1 * m_numerator + k2 * fraction.m_numerator;
+    m_denominator = lcm;
+
+    this->reduceFraction();
+}
+
+void Fraction::operator-= (const Fraction& fraction)
+{
+    int lcm{ std::lcm(m_denominator, fraction.m_denominator) };
+
+    int k1{ lcm / m_denominator };
+    int k2{ lcm / fraction.m_denominator };
+
+    m_numerator = k1 * m_numerator - k2 * fraction.m_numerator;
+    m_denominator = lcm;
+
+    this->reduceFraction();
+}
+
+void Fraction::operator*= (const Fraction& fraction)
+{
+    m_numerator *= fraction.m_numerator;
+    m_denominator *= fraction.m_denominator;
+
+    this->reduceFraction();
+}
+
+void Fraction::operator/= (const Fraction& fraction)
+{
+    m_numerator *= fraction.m_denominator; 
+    m_denominator *= fraction.m_numerator;
+
+    this->reduceFraction();
+}
+
+Fraction& Fraction::operator++ ()
+{
+    ++m_numerator;
+    this->reduceFraction();
+    return *this;
+}
+
+Fraction& Fraction::operator-- ()
+{
+    --m_numerator;
+    this->reduceFraction();
+    return *this;
+}
+
+Fraction Fraction::operator++ (int)
+{
+    Fraction temp{ m_numerator, m_denominator };
+    ++m_numerator;
+    this->reduceFraction();
+    return temp;
+}
+
+Fraction Fraction::operator-- (int)
+{
+    Fraction temp{ m_numerator, m_denominator };
+    --m_numerator;
+    this->reduceFraction();
+    return temp;
+}
 
 std::ostream& operator<< (std::ostream& out, const Fraction& fraction)
 {
@@ -189,22 +237,3 @@ bool operator!= (const Fraction& fraction1, const Fraction& fraction2)
     int difference = k1 * fraction1.m_numerator - k2 * fraction2.m_numerator;
     return (difference != 0);
 }
-
-
-int main()
-{
-    Fraction a{ 2, 5 };
-    Fraction b{ 3, 8 };
-    std::cout << a << b << "\n";
-
-    std::cout << "Sum = " << a + b << "Diff = " << a - b << "Mult = " << a * b <<
-        "Div = " << a / b;
-    std::cout << "Double b = " << b.convertToDouble() << "\n\n";
-    std::cout << "a compare b\n";
-    std::cout << ">, <, =, >=, <=, !=\n";
-    std::cout << (a > b) << (a < b) << (a == b) << (a >= b) << (a <= b) << (a != b);
-
-    return EXIT_SUCCESS;
-}
-
-

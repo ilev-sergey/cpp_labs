@@ -140,12 +140,12 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="Fraction.cpp" />
     <ClCompile Include="Problem1.cpp" />
-    <ClCompile Include="Problem2.cpp" />
+    <ClCompile Include="Problem2\Fraction.cpp" />
+    <ClCompile Include="Problem2\Problem2.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Fraction.h" />
+    <ClInclude Include="Problem2\Fraction.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
