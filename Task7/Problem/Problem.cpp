@@ -5,6 +5,7 @@
 #include "Figure.h"
 
 using vectorOfPairs = std::vector<std::pair<double, double>>;
+using pair = std::pair<double, double>;
 
 class Figure
 {
@@ -75,14 +76,14 @@ public:
 
     virtual void calculateSides()
     {
-        std::pair <double, double> vertice1;
-        std::pair <double, double> vertice2;
+        pair vertice1;
+        pair vertice2;
         for (int i = 0; i < m_vertices.size(); ++i)
         {
             vertice1 = m_vertices[i];
             vertice2 = m_vertices[(i + 1) % amountOfTriangleDimensions];
             m_sides[i] = sqrt(pow((vertice1.first - vertice2.first), 2) +
-                              pow((vertice1.second - vertice2.second), 2));
+                pow((vertice1.second - vertice2.second), 2));
         }
     }
 
@@ -156,12 +157,12 @@ public:
 
     virtual void calculateSides()
     {
-        std::pair <double, double> vertice1{ m_vertices[0] };
-        std::pair <double, double> vertice2;
+        pair vertice1{ m_vertices[0] };
+        pair vertice2;
         double currentLength{ 0 };
         double minLength{ 'inf' };
         double maxLength{ 0 };
-        
+
         for (int i = 1; i < m_vertices.size(); ++i)
         {
             vertice2 = m_vertices[i];
@@ -205,9 +206,9 @@ public:
 
     virtual void calculateSides()
     {
-        std::pair <double, double> vertice{ m_vertices[0] };
-        std::pair <double, double> vertice1{ m_vertices[1] };
-        std::pair <double, double> vertice2{ m_vertices[2] };
+        pair vertice{ m_vertices[0] };
+        pair vertice1{ m_vertices[1] };
+        pair vertice2{ m_vertices[2] };
 
         side = std::min(
             sqrt(pow((vertice1.first - vertice.first), 2) + pow((vertice1.second - vertice.second), 2)),
@@ -229,10 +230,10 @@ private:
 
 protected:
     const double pi{ 3.14159265359 };
-    std::pair<double, double> m_center;
+    pair m_center;
 
 public:
-    Ellipse(const std::pair<double, double>& center, double a, double b) :
+    Ellipse(const pair& center, double a, double b) :
         m_center{ center }, m_a{ a }, m_b{ b }
     {
         m_type = "Ellipse";
@@ -270,7 +271,7 @@ private:
     double m_radius;
 
 public:
-    Circle(const std::pair<double, double>& center, double radius) :
+    Circle(const pair& center, double radius) :
         Ellipse{ center, radius, radius }, m_radius{ radius }
     {
         m_type = "Circle";
@@ -295,37 +296,27 @@ public:
 
 int main()
 {
-    vectorOfPairs verticesOfTriangle{ std::make_pair(1, 3), std::make_pair(2, 3), std::make_pair(3, 5) };
+    vectorOfPairs verticesOfTriangle{ pair(1, 3), pair(2, 3), pair(3, 5) };
     Triangle triangle{ verticesOfTriangle };
-    triangle.printInformation();
 
-    std::cout << "=====================\n\n";
-
-    vectorOfPairs verticesOfRectangle{ std::make_pair(1, 0), std::make_pair(0, 2),
-        std::make_pair(4, 4), std::make_pair(5, 2)};
-
+    vectorOfPairs verticesOfRectangle{ pair(1, 0), pair(0, 2), pair(4, 4), pair(5, 2) };
     Rectangle rectangle{ verticesOfRectangle };
-    rectangle.printInformation();
 
-    std::cout << "=====================\n\n";
-
-    vectorOfPairs verticesOfSquare{ std::make_pair(1, 0), std::make_pair(0, 2),
-    std::make_pair(3, 1), std::make_pair(2, 3) };
-
+    vectorOfPairs verticesOfSquare{ pair(1, 0), pair(0, 2), pair(3, 1), pair(2, 3) };
     Square square{ verticesOfSquare };
-    square.printInformation();
 
-    std::cout << "=====================\n\n";
-
-    std::pair < double, double > center { std::make_pair(3, 5) };
-
+    std::pair < double, double > center{ pair(3, 5) };
     Ellipse ellipse{ center, 10, 1 };
-    ellipse.printInformation();
-
-    std::cout << "=====================\n\n";
 
     Circle circle{ center, 10 };
-    circle.printInformation();
+
+    std::vector<Figure*> figures{ &triangle, &rectangle, &square, &ellipse, &circle };
+
+    for (auto figure : figures)
+    {
+        figure->printInformation();
+        std::cout << "=====================\n\n";
+    }
 
     return EXIT_SUCCESS;
 }
