@@ -12,11 +12,11 @@ protected:
     std::string m_type;
 
 public:
-    virtual void printInformation();
-    virtual double calculateSquare() = 0;
-    virtual double calculatePerimeter() = 0;
-    virtual void printDimensions() = 0;
-    virtual void printVertices() = 0;
+    virtual void printInformation() const;
+    virtual double calculateSquare() const = 0;
+    virtual double calculatePerimeter() const = 0;
+    virtual void printDimensions() const = 0;
+    virtual void printVertices() const = 0;
 };
 
 
@@ -26,9 +26,9 @@ protected:
     vectorOfPairs m_vertices;
 
 public:
-    Polygon(vectorOfPairs);
+    Polygon(const vectorOfPairs&);
 
-    virtual void printVertices();
+    virtual void printVertices() const;
     virtual void calculateSides() = 0;
 };
 
@@ -43,9 +43,9 @@ public:
     Triangle(const vectorOfPairs&);
 
     virtual void calculateSides();
-    virtual double calculatePerimeter();
-    virtual double calculateSquare();
-    virtual void printDimensions();
+    virtual double calculatePerimeter() const;
+    virtual double calculateSquare() const;
+    virtual void printDimensions() const;
 };
 
 
@@ -69,9 +69,9 @@ public:
     Rectangle(const vectorOfPairs&);
 
     virtual void calculateSides();
-    virtual double calculatePerimeter();
-    virtual double calculateSquare();
-    virtual void printDimensions();
+    virtual double calculatePerimeter() const;
+    virtual double calculateSquare() const;
+    virtual void printDimensions() const;
 };
 
 
@@ -84,7 +84,7 @@ public:
     Square(const vectorOfPairs&);
 
     virtual void calculateSides();
-    virtual void printDimensions();
+    virtual void printDimensions() const;
 };
 
 
@@ -101,10 +101,10 @@ protected:
 public:
     Ellipse(const pair&, double = 0, double = 0);
 
-    virtual void printVertices();
-    virtual double calculatePerimeter();
-    virtual double calculateSquare();
-    virtual void printDimensions();
+    virtual void printVertices() const;
+    virtual double calculatePerimeter() const;
+    virtual double calculateSquare() const;
+    virtual void printDimensions() const;
 };
 
 
@@ -116,7 +116,9 @@ private:
 public:
     Circle(const pair&, double = 0);
 
-    virtual double calculatePerimeter();
-    virtual double calculateSquare();
-    virtual void printDimensions();
+    virtual double calculatePerimeter() const;
+    virtual double calculateSquare() const;
+    virtual void printDimensions() const;
 };
+
+std::ostream& operator<< (std::ostream&, const Figure*);

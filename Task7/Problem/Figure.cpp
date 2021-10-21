@@ -1,6 +1,6 @@
 #include "Figure.h"
 
-void Figure::printInformation()
+void Figure::printInformation() const
 {
     std::cout << m_type << "\n\n";
 
@@ -11,9 +11,9 @@ void Figure::printInformation()
     std::cout << "Square = " << calculateSquare() << "\n\n";
 }
 
-Polygon::Polygon(vectorOfPairs vertices) : m_vertices{ vertices } {}
+Polygon::Polygon(const vectorOfPairs& vertices) : m_vertices{ vertices } {}
 
-void Polygon::printVertices()
+void Polygon::printVertices() const
 {
     std::cout << "Vertices:\n";
 
@@ -56,7 +56,7 @@ void Triangle::calculateSides()
     }
 }
 
-double Triangle::calculatePerimeter()
+double Triangle::calculatePerimeter() const
 {
     double rez = 0;
 
@@ -67,7 +67,7 @@ double Triangle::calculatePerimeter()
     return rez;
 }
 
-double Triangle::calculateSquare() // based on Heron's formula
+double Triangle::calculateSquare() const // based on Heron's formula
 {
     double p = calculatePerimeter() / 2;
     double rez = p;
@@ -79,7 +79,7 @@ double Triangle::calculateSquare() // based on Heron's formula
     return sqrt(rez);
 }
 
-void Triangle::printDimensions()
+void Triangle::printDimensions() const
 {
     std::cout << "Sides:\n";
     std::string delimiter{ "" };
@@ -136,17 +136,17 @@ void Rectangle::calculateSides()
     width = minLength;
 }
 
-double Rectangle::calculatePerimeter()
+double Rectangle::calculatePerimeter() const
 {
     return 2 * (length + width);
 }
 
-double Rectangle::calculateSquare()
+double Rectangle::calculateSquare() const
 {
     return length * width;
 }
 
-void Rectangle::printDimensions()
+void Rectangle::printDimensions() const
 {
     std::cout << "Dimesions:\n";
     std::cout << "Length = " << length << "\n";
@@ -171,7 +171,7 @@ void Square::calculateSides()
     );
 }
 
-void Square::printDimensions()
+void Square::printDimensions() const
 {
     std::cout << "Side = " << side << "\n\n";
 }
@@ -182,24 +182,24 @@ Ellipse::Ellipse(const pair& center, double a, double b) : m_center{ center }, m
     m_type = "Ellipse";
 }
 
-void Ellipse::printVertices()
+void Ellipse::printVertices() const
 {
     std::cout << "Center:\n";
     std::cout << "(" << m_center.first << ", " << m_center.second << ")\n";
     std::cout << "\n";
 }
 
-double Ellipse::calculatePerimeter() // approximate value
+double Ellipse::calculatePerimeter() const // approximate value
 {
     return 4 * (pi * m_a * m_b + pow((m_a - m_b), 2)) / (m_a + m_b);
 }
 
-double Ellipse::calculateSquare()
+double Ellipse::calculateSquare() const
 {
     return pi * m_a * m_b;
 }
 
-void Ellipse::printDimensions()
+void Ellipse::printDimensions() const
 {
     std::cout << "Dimensions:\n";
     std::cout << "a = " << m_a << "\n";
@@ -213,18 +213,24 @@ Circle::Circle(const pair& center, double radius) : Ellipse{ center, radius, rad
     m_type = "Circle";
 }
 
-double Circle::calculatePerimeter()
+double Circle::calculatePerimeter() const
 {
     return 2 * pi * m_radius;
 }
 
-double Circle::calculateSquare()
+double Circle::calculateSquare() const
 {
     return pi * pow(m_radius, 2);
 }
 
-void Circle::printDimensions()
+void Circle::printDimensions() const
 {
     std::cout << "Radius = " << m_radius << "\n";
     std::cout << "\n";
+}
+
+std::ostream& operator<< (std::ostream& out, const Figure* figure)
+{
+    figure->printInformation();
+    return out;
 }

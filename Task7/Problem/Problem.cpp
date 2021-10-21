@@ -18,10 +18,9 @@ int main()
 
     std::vector<Figure*> figures{ &triangle, &rectangle, &square, &ellipse, &circle };
 
-    for (auto figure : figures)
+    for (const auto figure : figures)
     {
-        figure->printInformation();
-        std::cout << "=====================\n\n";
+        std::cout << figure << "=====================\n\n";
     }
 
     return EXIT_SUCCESS;
