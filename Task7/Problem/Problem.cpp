@@ -20,7 +20,7 @@ int main()
 
     for (const auto figure : figures)
     {
-        std::cout << figure << "=====================\n\n";
+        std::cout << *figure << "=====================\n\n";
     }
 
     return EXIT_SUCCESS;

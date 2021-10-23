@@ -229,8 +229,8 @@ void Circle::printDimensions() const
     std::cout << "\n";
 }
 
-std::ostream& operator<< (std::ostream& out, const Figure* figure)
+std::ostream& operator<< (std::ostream& out, const Figure& figure)
 {
-    figure->printInformation();
+    figure.printInformation();
     return out;
 }

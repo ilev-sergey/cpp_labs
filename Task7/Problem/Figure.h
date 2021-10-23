@@ -1,7 +1,9 @@
 #pragma once
 
-#include <vector>
 #include <iostream>
+#include <vector>
+#include <string>
+#include <utility>
 
 using vectorOfPairs = std::vector<std::pair<double, double>>;
 using pair = std::pair<double, double>;
@@ -12,6 +14,7 @@ protected:
     std::string m_type;
 
 public:
+    virtual ~Figure() = default;
     virtual void printInformation() const;
     virtual double calculateSquare() const = 0;
     virtual double calculatePerimeter() const = 0;
@@ -27,8 +30,9 @@ protected:
 
 public:
     Polygon(const vectorOfPairs&);
+    virtual ~Polygon() = default;
 
-    virtual void printVertices() const;
+    virtual void printVertices() const override;
     virtual void calculateSides() = 0;
 };
 
@@ -41,11 +45,12 @@ private:
 
 public:
     Triangle(const vectorOfPairs&);
+    virtual ~Triangle() = default;
 
-    virtual void calculateSides();
-    virtual double calculatePerimeter() const;
-    virtual double calculateSquare() const;
-    virtual void printDimensions() const;
+    virtual void calculateSides() override;
+    virtual double calculatePerimeter() const override;
+    virtual double calculateSquare() const override;
+    virtual void printDimensions() const override;
 };
 
 
@@ -56,6 +61,7 @@ private:
 
 public:
     Quadrangle(const vectorOfPairs&);
+    virtual ~Quadrangle() = default;
 };
 
 
@@ -67,11 +73,12 @@ private:
 
 public:
     Rectangle(const vectorOfPairs&);
+    virtual ~Rectangle() = default;
 
-    virtual void calculateSides();
-    virtual double calculatePerimeter() const;
-    virtual double calculateSquare() const;
-    virtual void printDimensions() const;
+    virtual void calculateSides() override;
+    virtual double calculatePerimeter() const override;
+    virtual double calculateSquare() const override;
+    virtual void printDimensions() const override;
 };
 
 
@@ -82,9 +89,10 @@ private:
 
 public:
     Square(const vectorOfPairs&);
+    virtual ~Square() = default;
 
-    virtual void calculateSides();
-    virtual void printDimensions() const;
+    virtual void calculateSides() override;
+    virtual void printDimensions() const override;
 };
 
 
@@ -100,11 +108,12 @@ protected:
 
 public:
     Ellipse(const pair&, double = 0, double = 0);
+    virtual ~Ellipse() = default;
 
-    virtual void printVertices() const;
-    virtual double calculatePerimeter() const;
-    virtual double calculateSquare() const;
-    virtual void printDimensions() const;
+    virtual void printVertices() const override;
+    virtual double calculatePerimeter() const override;
+    virtual double calculateSquare() const override;
+    virtual void printDimensions() const override;
 };
 
 
@@ -115,10 +124,11 @@ private:
 
 public:
     Circle(const pair&, double = 0);
+    virtual ~Circle() = default;
 
-    virtual double calculatePerimeter() const;
-    virtual double calculateSquare() const;
-    virtual void printDimensions() const;
+    virtual double calculatePerimeter() const override;
+    virtual double calculateSquare() const override;
+    virtual void printDimensions() const override;
 };
 
-std::ostream& operator<< (std::ostream&, const Figure*);
+std::ostream& operator<< (std::ostream&, const Figure&);
