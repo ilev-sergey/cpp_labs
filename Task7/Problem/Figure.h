@@ -4,6 +4,7 @@
 #include <vector>
 #include <string>
 #include <utility>
+#include <cmath>
 
 using vectorOfPairs = std::vector<std::pair<double, double>>;
 using pair = std::pair<double, double>;
