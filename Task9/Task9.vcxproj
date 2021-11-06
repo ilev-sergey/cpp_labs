@@ -142,6 +142,9 @@
     <ClCompile Include="Problem1.cpp" />
     <ClCompile Include="Problem2.cpp" />
   </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Array.h" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

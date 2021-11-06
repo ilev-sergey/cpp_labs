@@ -3,7 +3,7 @@
 #include <algorithm>
 #include <string>
 
-// quiksort
+// quicksort
 
 template < typename T >
 int setPartition(T& values, int left, int right)
@@ -45,6 +45,15 @@ void quickSort(T& values)
 }
 
 template < typename T >
+void quickSort(T& values, std::size_t length)
+{
+    if (length)
+    {
+        quickSortImpl(values, 0, length - 1);
+    }
+}
+
+template < typename T >
 void print(T(&array))
 {
     std::string result{ "[" };
@@ -57,17 +66,33 @@ void print(T(&array))
     std::cout << result + "]";
 }
 
+template < typename T >
+void print(T(&array), std::size_t size)
+{
+    std::string result{ "[" };
+    std::string comma;
+
+    std::for_each(array, array + size, [&result, &comma](auto value)
+        {
+            result += comma + std::to_string(value);
+            comma = ", ";
+        });
+
+    std::cout << result + "]";
+}
+
 int main()
 {
     std::cout << "Static array tests:\n\n";
 
-    int a[] = { 2, 5, -6, 1, 11, -1 };
+    constexpr int clength = 6;
+    int a[clength] { 2, 5, -6, 1, 11, -1 };
 
     std::cout << "Original array: " << "\n";
     print(a);
     std::cout << "\n\n";
 
-    //quickSort(a);
+    quickSort(a, clength);
 
     std::cout << "Sorted array: " << "\n";
     print(a);
@@ -77,17 +102,20 @@ int main()
 
     std::cout << "Dynamic array tests:\n\n";
 
-    int b[] = { 2, 5, -6, 1, 11, -1 };
+    int length = 6;
+    int *b = new int[length] { 2, 5, -6, 1, 11, -1 };
 
     std::cout << "Original array: " << "\n";
-    print(b);
+    print(b, length);
     std::cout << "\n\n";
 
-    //quickSort(b);
+    quickSort(b, length);
 
     std::cout << "Sorted array: " << "\n";
-    print(b);
+    print(b, length);
     std::cout << "\n\n\n";
+
+    delete[] b;
 
     // ===============================================
 
