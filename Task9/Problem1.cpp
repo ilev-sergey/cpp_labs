@@ -3,17 +3,15 @@
 #include <algorithm>
 #include <string>
 
-// quicksort
-
-template < typename T >
-int setPartition(T& values, int left, int right)
+template < typename T, typename F >
+int setPartition(T& values, int left, int right, F comp)
 {
     int x = values[right];
     int less = left;
 
     for (int i = left; i < right; ++i)
     {
-        if (values[i] <= x)
+        if (comp(values[i], x))
         {
             std::swap(values[i], values[less]);
             ++less;
@@ -24,32 +22,50 @@ int setPartition(T& values, int left, int right)
     return less;
 }
 
-template < typename T >
-void quickSortImpl(T& values, int left, int right)
+template < typename T, typename F >
+void quickSortImpl(T& values, int left, int right, F comp)
 {
     if (left < right)
     {
-        int q = setPartition(values, left, right);
-        quickSortImpl(values, left, q - 1);
-        quickSortImpl(values, q + 1, right);
+        int q = setPartition(values, left, right, comp);
+        quickSortImpl(values, left, q - 1, comp);
+        quickSortImpl(values, q + 1, right, comp);
     }
 }
 
-template < typename T >
-void quickSort(T& values)
-{
-    if (!values.empty())
-    {
-        quickSortImpl(values, 0, values.size() - 1);
-    }
-}
+//template < typename T >
+//void quickSort(T& values)
+//{
+//    if (!values.empty())
+//    {
+//        quickSortImpl(values, 0, values.size() - 1, std::less<>());
+//    }
+//}
+//
+//template < typename T, typename F >
+//void quickSort(T& values, F comp)
+//{
+//    if (!values.empty())
+//    {
+//        quickSortImpl(values, 0, values.size() - 1, comp);
+//    }
+//}
 
 template < typename T >
 void quickSort(T& values, std::size_t length)
 {
     if (length)
     {
-        quickSortImpl(values, 0, length - 1);
+        quickSortImpl(values, 0, length - 1, std::less<>());
+    }
+}
+
+template < typename T, typename F >
+void quickSort(T& values, std::size_t length, F comp)
+{
+    if (length)
+    {
+        quickSortImpl(values, 0, length - 1, comp);
     }
 }
 
@@ -93,8 +109,12 @@ int main()
     std::cout << "\n\n";
 
     quickSort(a, clength);
-
     std::cout << "Sorted array: " << "\n";
+    print(a);
+    std::cout << "\n\n";
+
+    quickSort(a, clength, std::greater<>());
+    std::cout << "Descending sorted array: " << "\n";
     print(a);
     std::cout << "\n\n\n";
 
@@ -113,6 +133,11 @@ int main()
 
     std::cout << "Sorted array: " << "\n";
     print(b, length);
+    std::cout << "\n\n";
+
+    quickSort(b, length, std::greater<>());
+    std::cout << "Descending sorted array: " << "\n";
+    print(a);
     std::cout << "\n\n\n";
 
     delete[] b;
@@ -127,9 +152,14 @@ int main()
     print(c);
     std::cout << "\n\n";
 
-    quickSort(c);
-
+    //quickSort(c);
     std::cout << "Sorted vector: " << "\n";
+    print(c);
+    std::cout << "\n\n";
+
+    //quickSort(c, [](auto a, auto b) { return a > b; });
+    //quickSort(c, std::greater<>()); // same
+    std::cout << "Descending sorted vector: " << "\n";
     print(c);
     std::cout << "\n";
 
