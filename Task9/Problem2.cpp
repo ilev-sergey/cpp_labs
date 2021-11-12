@@ -35,7 +35,6 @@ int main()
 
     Array<int> arr2;
     arr2.printInfo(2);
-    std::cout << std::boolalpha << "arr2._ptr == static_cast<int*>(nullptr): " << (arr2.getPtr() == static_cast<int*>(nullptr)) << "\n";
 
     std::cout << "\n========================================\n\n";
 

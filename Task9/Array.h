@@ -11,6 +11,7 @@ class Array
 private:
     Type* _ptr;
     std::size_t _length;
+
 public:
     Array(const Type* ptr = nullptr, const std::size_t& length = 0);
     Array(std::initializer_list<Type> list);
@@ -22,11 +23,11 @@ public:
     Array& operator=(Array&& array);
 
     Type& operator[](const std::size_t& index);
+    const Type& operator[](const std::size_t& index) const;
 
     void resize(const std::size_t& length);
     void swap(Array& array);
 
-    Type* getPtr() const { return _ptr; }
     const std::size_t& size() const { return _length; }
     void printInfo(int i = 0) const;
 };
@@ -119,6 +120,12 @@ Array<Type>& Array<Type>::operator=(Array<Type>&& array)
 
 template <class Type>
 Type& Array<Type>::operator[](const std::size_t& index)
+{
+    return (this->_ptr)[index];
+}
+
+template <class Type>
+const Type& Array<Type>::operator[](const std::size_t& index) const
 {
     return (this->_ptr)[index];
 }
