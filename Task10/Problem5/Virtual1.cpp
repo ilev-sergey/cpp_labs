@@ -12,7 +12,7 @@ protected:
 
     int _examGrade;
 
-    int getExamGrade()
+    int getExamGrade() const
     {
         std::random_device rd;
         std::mt19937 gen(rd());
@@ -31,7 +31,10 @@ protected:
 public:
     Subject(double easeOfCommunication) : _easeOfCommunication{ easeOfCommunication },
                                           _examGrade{ getExamGrade() } {}
-    virtual int getGrade() = 0;
+    virtual ~Subject() = default;
+
+    virtual int getGrade() const = 0;
+    virtual int getGrade(int) const = 0;
 
     int recalculateGrade()
     {
@@ -58,7 +61,9 @@ public:
     Maths(int BRS = 0, double easeOfCommunication = _averageEaseOfCommunication) :
         Subject(easeOfCommunication), _BRS{ BRS } {}
 
-    virtual int getGrade()
+    virtual ~Maths() = default;
+
+    virtual int getGrade() const override
     {
         if (_examGrade <= _minGrade + 1)
         {
@@ -75,7 +80,7 @@ public:
         return finalGrade;
     }
 
-    virtual int getGrade(int exam)
+    virtual int getGrade(int exam) const override
     {
         int scores = _BRS + exam * _stepScores;
         int finalGrade = _maxGrade + 1 - (_maxScores - scores) / _stepScores;
@@ -100,7 +105,9 @@ public:
     Physics(int BRS = _minScores, double easeOfCommunication = _averageEaseOfCommunication) :
         Subject(easeOfCommunication), _BRS{ BRS } {}
 
-    virtual int getGrade()
+    virtual ~Physics() = default;
+
+    virtual int getGrade() const override
     {
         int grade = _BRS + _examGrade;
 
@@ -113,7 +120,7 @@ public:
         return grade;
     }
 
-    virtual int getGrade(int exam)
+    virtual int getGrade(int exam) const override
     {
         int grade = _BRS + exam;
 

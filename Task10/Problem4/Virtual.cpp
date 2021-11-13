@@ -3,7 +3,9 @@
 class Base
 {
 public:
-    virtual void print()
+    virtual ~Base() = default;
+
+    virtual void print() const
     {
         std::cout << "Base\n";
     }
@@ -12,7 +14,9 @@ public:
 class Derived1 : public Base
 {
 public:
-    virtual void print()
+    virtual ~Derived1() = default;
+
+    virtual void print() const override
     {
         std::cout << "Derived1\n";
     }
@@ -21,7 +25,9 @@ public:
 class Derived2 : public Base
 {
 public:
-	virtual void print()
+    virtual ~Derived2() = default;
+
+	virtual void print() const override
 	{
 		std::cout << "Derived2\n";
 	}
