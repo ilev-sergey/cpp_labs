@@ -1,4 +1,4 @@
-#include "../../Clock/Clock.hpp"
+п»ї#include "../../Clock/Clock.hpp"
 
 #include <iostream>
 #include <vector>
@@ -49,7 +49,7 @@ void compareContainers()
         *iterf = size - i;
     }
 
-    // Проверка заполнения контейнеров
+    // РџСЂРѕРІРµСЂРєР° Р·Р°РїРѕР»РЅРµРЅРёСЏ РєРѕРЅС‚РµР№РЅРµСЂРѕРІ
     //std::cout << vector[0] << " " << vector[size - 1] << "\n";
     //std::cout << array[0] << " " << array[size - 1] << "\n";
     //std::cout << deque[0] << " " << deque[size - 1] << "\n";
@@ -83,7 +83,7 @@ void compareContainers()
 
     std::cout << '\n';
 
-    // Проверка сортировки контейнеров
+    // РџСЂРѕРІРµСЂРєР° СЃРѕСЂС‚РёСЂРѕРІРєРё РєРѕРЅС‚РµР№РЅРµСЂРѕРІ
     //std::cout << vector[0] << " " << vector[size - 1] << "\n";
     //std::cout << array[0] << " " << array[size - 1] << "\n";
     //std::cout << deque[0] << " " << deque[size - 1] << "\n";
