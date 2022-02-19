@@ -32,7 +32,7 @@ int main()
     printInfo(vector);
 
     //std::cout << "push_back(0)\n"; 
-    //vector.push_back(0); // std::bad_alloc
+    //vector.push_back(0); // std::bad_alloc (превышение допустимого размера занимаемой памяти в куче)
     //printInfo(vector);
 
     return EXIT_SUCCESS;

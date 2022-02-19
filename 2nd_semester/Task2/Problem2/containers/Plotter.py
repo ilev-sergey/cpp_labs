@@ -50,7 +50,7 @@ plt.figure(figsize=(12,7)) # Размер холста
 
 # Подписи к графику
 plt.title(r"Graph of sorting time versus container size")
-plt.ylabel(r"Time, sec")
+plt.ylabel(r"Time, ms")
 plt.xlabel(r"Size of container")
 
 # Выбор масштаба
