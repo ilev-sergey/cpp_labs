@@ -4,11 +4,13 @@
 class Clock
 {
 private:
-    std::chrono::steady_clock::time_point m_start;
-    std::chrono::steady_clock::time_point m_end;
+    static std::chrono::steady_clock::time_point m_start;
+    static std::chrono::steady_clock::time_point m_end;
+    static std::chrono::milliseconds m_duration;
 
 public:
-    void start();
-    void stop();
-    void printElapsed();
+    static void start();
+    static void stop();
+    static void printElapsed();
+    static std::chrono::milliseconds getDuration();
 };
