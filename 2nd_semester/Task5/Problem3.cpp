@@ -4,11 +4,19 @@
 
 int main()
 {
-    std::string text = "first@mail.ru Text for test asdkj$j@lkjdsa $^@adsl.adsk_.ru email@example.ru q@q. "
-        " lalala wrong@sad#@dsa.sda asa gOOd@dom-ain.Org, write to q&'#%@my-mail.com! q@.q"
-        " wr@mail.r1u wrong@qqq.cd_om li@st.of,correct_emails@gmail.com,another-one+3@yandex.ru";
+    std::string text = "first@mail.ru Text for test asdkjj@lkjdsa qq@adsl.adsk_.ru email@example.ru qq@qq. "
+        " lalala wrong@sad@dsa.sda asa gOOd@dom-ain.Org, write to qq@my-mail.com! qq@.qq"
+        " wr@mail.r1u correct@qqq.cd_om li@st.of,correct_emails@gmail.com,another-one@yandex.ru."
+        " _qwe@qwe.qwe qwe-@qwe.qwe e-l_sd.ad@d.sd.sf-d.a_sa.qe q@q.q q@q.qqqqqqqqqq q@q_.qq";
 
-    std::regex pattern(R"((?:[\s,]|^)([\w!#$%&'*+/=?^_‘{|}~-]+@([-[:alnum:]]+\.[[:alpha:]]+))(?=[\s,.!?]|$))");
+    std::regex pattern(
+        R"((?:[\s,]|^))"                                          // separating characters
+        R"(([[:alpha:]](?:[[:alpha:]_\.-]*[[:alpha:]])?)"         // username
+        R"(@)"                                                    // @
+        R"(((?:[[:alpha:]](?:[[:alpha:]_\.-]*[[:alpha:]])?\.)+)"  // domain name
+            R"((?:[[:alpha:]][[:alpha:]_-]{0,7}[[:alpha:]]))))"       // TLD
+        R"((?=[\s,.!?]|$))"                                       // separating characters
+    );
 
     std::sregex_iterator begin(text.cbegin(), text.cend(), pattern);
     std::sregex_iterator end;
