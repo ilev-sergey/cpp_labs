@@ -25,10 +25,6 @@
 - [Task6](https://github.com/ilev-sergey/cpp_labs/tree/master/2nd_semester/Task6)
 - [Task7](https://github.com/ilev-sergey/cpp_labs/tree/master/2nd_semester/Task7)
 - [Task8](https://github.com/ilev-sergey/cpp_labs/tree/master/2nd_semester/Task8)
-- [Task9](https://github.com/ilev-sergey/cpp_labs/tree/master/2nd_semester/Task9)
-- [Task10](https://github.com/ilev-sergey/cpp_labs/tree/master/2nd_semester/Task10)
-- [Task11](https://github.com/ilev-sergey/cpp_labs/tree/master/2nd_semester/Task11)
-- [Task12](https://github.com/ilev-sergey/cpp_labs/tree/master/2nd_semester/Task12)
 
 ***
 #### 2021-2022
